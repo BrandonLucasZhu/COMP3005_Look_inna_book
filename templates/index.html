@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Let It Fly</title>
+    <!--personal css styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personalStyle.css') }}">
+    <!-- colour css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colours.css') }}">
+    <!-- Font-awesome-all.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome-all.css') }}">
+    <!-- Bootstrap.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.4.1-dist/css/bootstrap.css') }}">   
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class ="container">
+            <a class="navbar-brand" href="#">Let It Fly</a>
+            <button id ="nav-but" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav float-right-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#">Hours</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+                </ul>
+            </div>
+        </div>   
+    </nav>
+    <main>
+        <!--
+        <section id="pic">
+            <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
+        </section>
+        -->
+        <section id="map">
+
+        </section>
+    </main>
+
+    <section id="footer">
+            <footer class="footer foot-style bg-light">
+                <p">&copy; Let It Fly</p>
+            </footer>
+    </section> 
+
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap-4.4.1-dist/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>
