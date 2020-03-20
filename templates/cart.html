@@ -46,7 +46,7 @@
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    <a class="nav-link" href="#">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>
@@ -55,39 +55,11 @@
         </div>
     </nav>
     <div class="container">
-        <table style="width:100%">
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>ISBN</th>
-                <th>Genre</th>
-                <th>Price</th>
-            </tr>
-            
-            {% for book in bookstock %}
-            <tr>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.publisher }}</td>
-                <td>{{ book.isbn }}</td>
-                <td>{{ book.genre }}</td>
-                <td>{{ book.price }}</td>
-                <td>
-                    <button type="button" value="{{ book.book_id }}">Add To Cart</button>    
-                </td>
-                <td>
-                    <!-- get value of bookstock then do forloop to create drop down size  -->
-                    <select id="bookcount" name="user_book_count_select">
-                        {% for i in range(0,book.book_stock+1) %}
-                            <option value="{{ i }}">{{ i }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>    
-            {% endfor %}
-            
-        </table>
+        <!----
+        
+        
+        
+        -->
     </div>
     
     <main>

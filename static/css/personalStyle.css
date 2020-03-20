@@ -3,7 +3,11 @@ html, body{
     background-color:white;
     font-family: 'Roboto', cursive;
 }
-
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
 
 
 /*Commmon utilized css code for re-centering, styling etc */

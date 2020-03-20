@@ -55,39 +55,7 @@
         </div>
     </nav>
     <div class="container">
-        <table style="width:100%">
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>ISBN</th>
-                <th>Genre</th>
-                <th>Price</th>
-            </tr>
-            
-            {% for book in bookstock %}
-            <tr>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.publisher }}</td>
-                <td>{{ book.isbn }}</td>
-                <td>{{ book.genre }}</td>
-                <td>{{ book.price }}</td>
-                <td>
-                    <button type="button" value="{{ book.book_id }}">Add To Cart</button>    
-                </td>
-                <td>
-                    <!-- get value of bookstock then do forloop to create drop down size  -->
-                    <select id="bookcount" name="user_book_count_select">
-                        {% for i in range(0,book.book_stock+1) %}
-                            <option value="{{ i }}">{{ i }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>    
-            {% endfor %}
-            
-        </table>
+        
     </div>
     
     <main>
@@ -96,10 +64,21 @@
             <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
         </section>
         -->
+        <form action="" method="post">
+            <input type="text" placeholder="Username" name="username" value="{{
+            request.form.username }}">
+             <input type="password" placeholder="Password" name="password" value="{{
+            request.form.password }}">
+            <input class="btn btn-default" name="submit_but"  type="submit" value="Login">
+            <input class="btn btn-default" name="submit_but" type="submit" value="Sign Up">
+        </form>
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+
         
 
         <section id="map">
-
         </section>
     </main>
 
