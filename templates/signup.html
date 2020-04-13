@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Let It Fly</title>
+    <title>Look Inna Book</title>
     <!--personal css styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/personalStyle.css') }}">
     <!-- colour css -->
@@ -16,7 +16,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -25,19 +25,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('store') }}">Store</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hours</a>
-                </li>
+               
             </ul>
         </div>
         <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="#">Let It Fly</a>
+            <a class="navbar-brand mx-auto" href="#">Look Inna Book</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,19 +46,79 @@
         </div>
     </nav>
     <main>
-        <!--
-        <section id="pic">
-            <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
-        </section>
-        -->
-        <section id="map">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">   
+                                <label>First name</label>
+                                <div class="col">
+                                <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">   
+                                <label>Last name</label>
+                                <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Username</label>
+                            <input type="username" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Email Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Ex. JasonSmith@gmail.com">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                            <label>streetnumber</label>
+                            <input type="text" class="form-control" placeholder="#">
+                            </div>
+                            <div class="form-group col-md-9">
+                            <label for="inputPassword4">Street name</label>
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Street name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="city">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Province</label>
+                            <input type="text" class="form-control" id="province">
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">PostalCode</label>
+                            <input type="text" class="form-control" id="postalcode">
+                        </div>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-secondary">Complete Sign Up</button>
+                    </form>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>        
 
-        </section>
     </main>
 
     <section id="footer">
-            <footer class="footer foot-style bg-light">
-                <p">&copy; Let It Fly</p>
+            <footer class="footer foot-style bg-dark">
+                <p">&copy; Look Inna Book</p>
             </footer>
     </section> 
 

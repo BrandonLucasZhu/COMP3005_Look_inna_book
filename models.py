@@ -1,8 +1,10 @@
 #import database connection
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, LoginManager
+
 
 db = SQLAlchemy()
-
+login_manager = LoginManager()
 
 class Books(db.Model):
 
@@ -12,7 +14,6 @@ class Books(db.Model):
     author = db.Column(db.String())
     title = db.Column(db.String())
     isbn = db.Column(db.String())
-    genre = db.Column(db.String())
     publication_date = db.Column(db.String())
     price = db.Column(db.String())
     book_stock = db.Column(db.Integer())
@@ -31,33 +32,37 @@ class Books(db.Model):
         return '<title %r>' % (self.title, self.author, self.publisher, self.isbn, self.publication_date)
         
 
-class Users(db.Model):
+class Users(db.Model,UserMixin):
 
     __tablename__ = "users"
-    cust_id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     firstname = db.Column(db.String())
     lastname = db.Column(db.String())
     street_num = db.Column(db.String())
     postalcode = db.Column(db.String())
     country = db.Column(db.String())
     province = db.Column(db.String())
-    phonenum = db.Column(db.String())
-    email = db.Column(db.String())
+    phone_number = db.Column(db.String())
+    email = db.Column(db.String(), unique=True)
     username = db.Column(db.String())
     password = db.Column(db.String())
 
-    def __init__(self, cust_id, firstname, lastname, street_num, postalcode, country, province, phonenum, email, username, password):
-        self.cust_id = cust_id
+    def __init__(self, id, firstname, lastname, street_num, postalcode, country, province, phone_number, email, username, password):
+        self.id = cust_id
         self.firstname = firstname
         self.lastname = lastname
         self.street_num = street_num
         self.postalcode = postalcode
         self.country = country
         self.province = province
-        self.phonenum = phonenum
+        self.phone_number = phone_number
         self.email = email
         self.username = username
         self.password = password
 
     def __repr__(self):
-        return '<firstname %r>' % (self.firstname)
+        return self.id
+
+
+
+

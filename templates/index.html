@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Let It Fly</title>
+    <title>Look Inna Book</title>
     <!--personal css styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/personalStyle.css') }}">
+   
     <!-- colour css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/colours.css') }}">
     <!-- Font-awesome-all.css -->
@@ -16,57 +17,106 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-light" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('store') }}">Store</a>
+                    <a class="nav-link text-light" href="{{ url_for('store') }}">Store</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hours</a>
-                </li>
+                
             </ul>
         </div>
         <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="#">Let It Fly</a>
+            <a class="navbar-brand mx-auto" href="#">Look Inna Book</a>
             <button class="navbar-toggler" id="nav_but" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
+                {% if username == 'guest' %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" >Hello {{ username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link text-light" href="{{ url_for('cart') }}">Cart</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <main>
-        <!--
-        <section id="pic">
-            <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
-        </section>
-        -->
-        <section id="map">
-
-        </section>
-    </main>
-
+    
+    <div class="my_container">
+            <img class="w-100" src="{{ url_for('static', filename='pictures/fantasy_book.jpg') }}" alt="placeholder 960" class="img-responsive" />
+            
+    </div>
+    <div style="height:800px;">
+        <div class="my_container">
+            <header>
+                <h1 class="centered"> Look Inna Book Hours</h1>
+            </header> 
+            <table style="width:100%" class="table">
+                <tr>
+                    <th>Days</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>9:00AM</td>
+                    <td>8:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>9:00AM</td>
+                    <td>8:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>9:00AM</td>
+                    <td>8:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>9:00AM</td>
+                    <td>8:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>10:00AM</td>
+                    <td>7:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>11:00AM</td>
+                    <td>5:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>11:00AM</td>
+                    <td>5:00 PM</td>
+                </tr>
+            </table>
+            
+        </div>
+    </div>    
+       
+    
+    
     <section id="footer">
-            <footer class="footer foot-style bg-light">
-                <p">&copy; Let It Fly</p>
+            <footer class="footer con foot-style bg-dark">
+                <p class="text-light">&copy; Look Inna Book</p>
             </footer>
     </section> 
 
