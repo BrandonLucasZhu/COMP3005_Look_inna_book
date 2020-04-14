@@ -41,6 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{{ url_for('login') }}">Login</a>
                     </li>
+                
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link text-light" >Hello {{ username }}</a>
@@ -56,71 +57,15 @@
         </div>
     </nav>
     <div class="container">
-        <form action="" method="post">
-            <div class="form-group">
-            <label>Search Engine</label>
-            <div class="form-row">
-                <div class="form-group col-md-9">
-                    <input type="text" class="form-control" placeholder="Search ..." name="search_engine" value="{{
-                        request.form.search }}">
-                </div>
-                <div class="form-group col-md-3">   
-                    <input class="btn btn-secondary" name="search_for_book"  type="submit" value="Search" >
-                </div>
-            </div> 
+        <div class="row">
+            <div class="col-md-2">
             </div>
-        </form>
-    </div>
-    
-        <div class="container">
-            <table style="width:100%" class="table">
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                    <th>Price</th>
-                </tr>
-                
-                {% for book in bookstock %}
-                <form method = "POST">
-                    <tr>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.firstname }} {{ book.lastname }}</td>
-                        <td>{{ book.publisher_name }}</td>
-                        <td>{{ book.price }}</td>
-                        <td>
-                            <input class="btn btn-secondary" name="add_to_cart"  type="submit" value="Add To Cart" id="{{ book.id }}">
-                            <input type="hidden" name="bookisbn" value="{{ book.isbn }}">
-                            <input type="hidden" name="bookid" value="{{ book.book_id }}">
-                        </td>
-                        <td>
-                        
-                            <select class="custom-select" id="bookcount" name="user_book_count_select">
-                                {% for i in range(0,book.book_stock+1) %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                    </tr>
-                </form>    
-                {% endfor %}
-            </table>
+            <div class="col-md-8">
+                <header>
+                    <h1>Thank you for the purchase</h1>
+                </header>
+            </div>
+            <div class="col-md-2">
+            </div>
         </div>
-    <main>
-        
-        
-
-        
-    </main>
-
-    <section id="footer">
-            <footer class="footer foot-style bg-dark">
-                <p class="text-light">&copy; Look Inna Book</p>
-            </footer>
-    </section> 
-
-    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap-4.4.1-dist/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
-
-</body>
-</html>
+    </div>

@@ -41,6 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{{ url_for('login') }}">Login</a>
                     </li>
+                
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link text-light" >Hello {{ username }}</a>
@@ -56,66 +57,78 @@
         </div>
     </nav>
     <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <header>
+                    <h1>Summary of purchase</h1>
+                </header>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+    {% for i in range(len_books) %}
+    <div class="container">
+            <form method = "POST">
+                    <table style="width:100%" class="table">
+                        <tr>
+                            <th>Title</th>
+                            <th>isbn</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr>
+                            
+                            <td>{{ showbooks[i].title }}</td>
+                            <td>{{ showbooks[i].isbn }}</td>
+                            <td>{{ showbooks[i].price }}</td>
+                            <td>
+                                <input type="hidden" name="bookisbn" value="{{ showbooks[i].isbn }}">
+                                <input type="hidden" name="bookid" value="{{ showbooks[i].book_id }}">
+                            </td>
+                            
+                        </tr>
+                    </table>   
+            </form>
+    </div>            
+    {% endfor %}
+    <div class="container">
+        <table style="width:100%" class="table">
+            <tr>
+                <Th>Shipping Price</Th>
+                <th>Subtotal</th>
+                <th>Total</th>
+            </tr>
+            <tr>             
+                <td>$ 5.99</td>
+                <td>$ {{ sub_total }}</td>
+                <td>$ {{ total }}</td>
+            </tr>
+        </table>   
+    </div>
+    <div class="container">
         <form action="" method="post">
             <div class="form-group">
-            <label>Search Engine</label>
-            <div class="form-row">
-                <div class="form-group col-md-9">
-                    <input type="text" class="form-control" placeholder="Search ..." name="search_engine" value="{{
-                        request.form.search }}">
-                </div>
-                <div class="form-group col-md-3">   
-                    <input class="btn btn-secondary" name="search_for_book"  type="submit" value="Search" >
-                </div>
-            </div> 
+            <label>Credit Card</label>
+            <input type="text" class="form-control" placeholder="Enter Visa/MC/Interac" name="credit_card" value="{{
+                request.form.credit_card }}">
+            <input type="hidden" name="total" value="{{ total }}">    
             </div>
+        
+    </div>
+    <div class="container">
+        
+            <input class="btn btn-secondary" name="confirm"  type="submit" value="Confirm Purchase">
         </form>
     </div>
-    
-        <div class="container">
-            <table style="width:100%" class="table">
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                    <th>Price</th>
-                </tr>
-                
-                {% for book in bookstock %}
-                <form method = "POST">
-                    <tr>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.firstname }} {{ book.lastname }}</td>
-                        <td>{{ book.publisher_name }}</td>
-                        <td>{{ book.price }}</td>
-                        <td>
-                            <input class="btn btn-secondary" name="add_to_cart"  type="submit" value="Add To Cart" id="{{ book.id }}">
-                            <input type="hidden" name="bookisbn" value="{{ book.isbn }}">
-                            <input type="hidden" name="bookid" value="{{ book.book_id }}">
-                        </td>
-                        <td>
-                        
-                            <select class="custom-select" id="bookcount" name="user_book_count_select">
-                                {% for i in range(0,book.book_stock+1) %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                    </tr>
-                </form>    
-                {% endfor %}
-            </table>
-        </div>
-    <main>
-        
-        
 
-        
-    </main>
+    <div style="height: 200px;">
+    </div>
 
     <section id="footer">
             <footer class="footer foot-style bg-dark">
-                <p class="text-light">&copy; Look Inna Book</p>
+                <p">&copy; Look Inna Book</p>
             </footer>
     </section> 
 

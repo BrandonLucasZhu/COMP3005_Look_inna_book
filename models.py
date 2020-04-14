@@ -115,5 +115,61 @@ class Author(db.Model):
     firstname = db.Column(db.String())
     lastname = db.Column(db.String())
 
+class Views(db.Model):
+
+    __tablename__ = "views"
+    id = db.Column(db.Integer(), primary_key=True)
+    c_out_id= db.Column(db.String(), primary_key=True)
+
+    def __init__(self, id, c_out_id):
+        self.id = id
+        self.c_out_id = c_out_id
+       
+class Checkout(db.Model):
+
+    __tablename__ = "checkout"
+    c_out_id = db.Column(db.Integer(), primary_key=True)
+    creditcard= db.Column(db.String())
+    date = db.Column(db.String())
+    shipping_price = db.Column(db.String())
+    total = db.Column(db.String())
+
+    def __init__(self, c_out_id, creditcard, date, shipping_price, total):
+        self.c_out_id = c_out_id
+        self.date = date
+        self.shipping_price = shipping_price
+        self.total = total
+
+
+class Confirm_purchase(db.Model):
+
+    __tablename__ = "complete_purchase"
+    c_out_id = db.Column(db.Integer(), primary_key=True)
+    order_id= db.Column(db.Integer(), primary_key=True)
+    total= db.Column(db.Integer())
+
+    def __init__(self, c_out_id, order_id, total):
+        self.c_out_id = c_out_id
+        self.order_id = order_id
+        self.total = total
+
+class Order_track(db.Model):
+
+    __tablename__ = "order_track"
+    order_id= db.Column(db.Integer(), primary_key=True)
+    orderdate = db.Column(db.String())
+    depart_date = db.Column(db.String())
+    est_arrival = db.Column(db.String())
+    current_location = db.Column(db.String())
+
+    def __init__(self, order_id, orderdate, depart_date, est_arrival, current_location):
+        self.order_id = order_id
+        self.orderdate = orderdate
+        self.depart_date = depart_date
+        self.est_arrival = est_arrival
+        self.current_location = current_location
+
+
+
 
 

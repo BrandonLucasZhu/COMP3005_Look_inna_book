@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 import os
-from models import db, Books, Users, login_manager, Published, Publisher, Author, Wrote
+from models import db, Books, Users, login_manager, Published, Publisher, Author, Wrote ,Order_track, Confirm_purchase, Checkout , Views
 from flask_login import current_user, login_user
-
-
+from datetime import datetime, timedelta
+from datetime import date
 
 bookstore = Flask(__name__, template_folder='templates')           
 
@@ -141,6 +141,7 @@ def cart():
     main_dir = os.path.dirname(working_dir)
     showbooks = []
     #Check is user is logged in
+    len_books = 0
     if session.get('logged_in_user') is None:
         username = "guest"
     else:
@@ -152,8 +153,76 @@ def cart():
        
         len_books = len(showbooks)
 
+    if request.method == 'POST':
+        if request.form['checkout'] == "Checkout":
+            return redirect(url_for('checkout'))    
+
     return render_template('cart.html', username=username, showbooks=showbooks, len_books=len_books)
 
+
+@app.route("/checkout",methods=['GET', 'POST'])                  
+def checkout():
+    #store directory of folder
+    working_dir = os.path.dirname(os.path.abspath( __file__ ))
+    main_dir = os.path.dirname(working_dir)
+    showbooks = []
+    len_books = 0
+    disp_cart = session['user_cart']
+    print(disp_cart)
+    username = session.get('logged_in_user')
+    sub_total = 0
+    for i in range(len(disp_cart)):
+        showbooks.append(db.session.query(Books.title, Books.isbn, Books.price).filter_by(isbn = disp_cart[i]).first())
+    
+        sub_total += float(db.session.query(Books.price).filter_by(isbn = disp_cart[i]).first().price)
+
+    sub_total = round(sub_total + 5.99,2)
+    total = round(sub_total*1.13,2)
+    #print(sub_total)
+    #print(total)
+    len_books = len(showbooks)
+
+    if request.method == 'POST':
+        if request.form['confirm'] == "Confirm Purchase":
+            #update tables views, checkout, and confirm-purchase
+            #and update-order track
+            
+            
+            checkoutid = db.session.query(Checkout.c_out_id).count() + 1
+            #add checkout
+            add_checkout = Checkout(checkoutid, request.form['credit_card'], date.today(),"5.99",request.form['total'])
+            db.session.add(add_checkout)
+            db.session.commit()
+
+            #add order_track
+            orderid = db.session.query(Order_track.order_id).count() + 1
+            add_order_track = Order_track(orderid, date.today(), str(datetime.now() + timedelta(hours=5)), str(datetime.now() + timedelta(hours=200)), "Seattle")
+            db.session.add(add_order_track)
+            db.session.commit()
+
+
+            #add a view for this customer
+            id = session['user_id']
+            
+            add_viewer = Views(id,checkoutid)
+            db.session.add(add_viewer)
+            db.session.commit()
+
+            #add complete purchase
+            add_cp = Confirm_purchase(checkoutid, orderid, request.form['total'])
+            db.session.add(add_cp)
+            db.session.commit()
+
+            return redirect(url_for('ordercomplete')) 
+
+
+    return render_template('checkout.html', username=username, showbooks=showbooks, len_books=len_books,\
+    sub_total=sub_total, total=total)
+
+@app.route("/ordercomplete",methods=['GET', 'POST'])                  
+def ordercomplete():
+    username = session.get('logged_in_user')
+    return render_template('ordercomplete.html', username=username)
 
 
 if __name__ == "__main__":  
