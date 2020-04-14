@@ -64,6 +64,17 @@
                 <header>
                     <h1>Thank you for the purchase</h1>
                 </header>
+                <table>
+                    <tr>
+                        <td>Order Date: {{ orderinfo.orderdate }}</td>
+                    <tr>    
+                        <td>Departure Date: {{ orderinfo.depart_date }}</td>
+                    </tr>   
+                        <td>Arrival Date: {{ orderinfo.est_arrival }}</td>
+                    <tr>   
+                        <td>Current Location: {{ orderinfo.current_location }}</td>
+                    </tr>
+                </table>            
             </div>
             <div class="col-md-2">
             </div>

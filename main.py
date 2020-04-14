@@ -222,7 +222,13 @@ def checkout():
 @app.route("/ordercomplete",methods=['GET', 'POST'])                  
 def ordercomplete():
     username = session.get('logged_in_user')
-    return render_template('ordercomplete.html', username=username)
+    user_id = session.get('user_id')
+
+    orderinfo = db.session.query(Order_track.orderdate, Order_track.depart_date, Order_track.est_arrival, Order_track.current_location)\
+    .filter(Users.id == Views.id).filter(Views.c_out_id == Checkout.c_out_id).filter(Checkout.c_out_id == Confirm_purchase.c_out_id) \
+    .filter(Confirm_purchase.order_id == Order_track.order_id)
+    
+    return render_template('ordercomplete.html', username=username , orderinfo=orderinfo.first())
 
 
 if __name__ == "__main__":  
