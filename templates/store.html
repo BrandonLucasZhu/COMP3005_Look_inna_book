@@ -56,49 +56,54 @@
         </div>
     </nav>
     <div class="container">
-        <table style="width:100%" class="table">
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>Price</th>
-            </tr>
-            
-            {% for book in bookstock %}
-            <tr>
-                
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.publisher }}</td>
-                <td>{{ book.price }}</td>
-                <td>
-                    <button type="button" class="btn btn-secondary" value="{{ book.book_id }}">Add To Cart</button>    
-                </td>
-                <td>
-                    <!-- get value of bookstock then do forloop to create drop down size  -->
-                    <select class="custom-select" id="bookcount" name="user_book_count_select">
-                        {% for i in range(0,book.book_stock+1) %}
-                            <option value="{{ i }}">{{ i }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>    
-            {% endfor %}
-            
-        </table>
+        <form action="" method="post">
+            <div class="form-group">
+            <label>Search Engine</label>
+            <input type="text" class="form-control" placeholder="Search ..." name="search_engine" value="{{
+                request.form.search }}">
+            </div>
+        </form>
     </div>
     
+        <div class="container">
+            <table style="width:100%" class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Price</th>
+                </tr>
+                
+                {% for book in bookstock %}
+                <form method = "POST">
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.firstname }} {{ book.lastname }}</td>
+                        <td>{{ book.publisher_name }}</td>
+                        <td>{{ book.price }}</td>
+                        <td>
+                            <input class="btn btn-secondary" name="add_to_cart"  type="submit" value="Add To Cart" id="{{ book.id }}">
+                            <input type="hidden" name="bookisbn" value="{{ book.isbn }}">
+                            <input type="hidden" name="bookid" value="{{ book.book_id }}">
+                        </td>
+                        <td>
+                        
+                            <select class="custom-select" id="bookcount" name="user_book_count_select">
+                                {% for i in range(0,book.book_stock+1) %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                </form>    
+                {% endfor %}
+            </table>
+        </div>
     <main>
-        <!--
-        <section id="pic">
-            <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
-        </section>
-        -->
+        
         
 
-        <section id="map">
-
-        </section>
+        
     </main>
 
     <section id="footer">

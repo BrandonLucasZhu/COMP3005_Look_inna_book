@@ -56,26 +56,67 @@
             </ul>
         </div>
     </nav>
+    {% if username == 'guest' %}
     <div class="container">
-        <!----
-        
-        
-        
-        -->
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <header>
+                    <h1>SORRY GUESTS CANNOT CHECKOUT</h1>
+                </header>
+                <img src="{{ url_for('static', filename='pictures/cryingtonton.gif') }}" alt="placeholder 960" class="img-responsive" />
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
     </div>
+    {% else %}
+        {% if len_books == 0  %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <header>
+                        <h1>YOU HAVE AN EMPTY CART</h1>
+                    </header>
+                    <img src="{{ url_for('static', filename='pictures/empty_cart.png') }}" alt="placeholder 960" class="img-responsive" />
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+        {% else %}
+            {% for i in range(len_books) %}
+            <div class="container">
+                    <form method = "POST">
+                            <table style="width:100%" class="table">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>isbn</th>
+                                    <th>Price</th>
+                                </tr>
+                                <tr>
+                                    
+                                    <td>{{ showbooks[i].title }}</td>
+                                    <td>{{ showbooks[i].isbn }}</td>
+                                    <td>{{ showbooks[i].price }}</td>
+                                
+                                    <td>
+                                        <input class="btn btn-secondary" name="add_to_cart"  type="submit" value="Delete" id="{{ showbooks[i].id }}">
+                                        <input type="hidden" name="bookisbn" value="{{ showbooks[i].isbn }}">
+                                        <input type="hidden" name="bookid" value="{{ showbooks[i].book_id }}">
+                                    </td>
+                                    
+                                </tr>
+                            </table>   
+                    </form>
+            </div>            
+            {% endfor %}
+        {% endif %}        
+    {% endif %}
     
-    <main>
-        <!--
-        <section id="pic">
-            <img src="{{ url_for('static', filename='pictures/chinesescenerypic.jpg') }}" class="img-fluid" alt="Responsive image">
-        </section>
-        -->
-        
-
-        <section id="map">
-
-        </section>
-    </main>
 
     <section id="footer">
             <footer class="footer foot-style bg-dark">
